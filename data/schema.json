@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OpportunitiesPortalSchema",
+  "description": "Simplified schema for Opportunities Portal MVP records (بوابة الفرص)",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "title",
+      "organization",
+      "type",
+      "study_levels",
+      "country",
+      "funding_type",
+      "deadline",
+      "yemeni_eligibility",
+      "summary",
+      "description",
+      "eligibility_criteria",
+      "benefits",
+      "source_url",
+      "verified_at"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9_-]+$",
+        "description": "Unique identifier for the opportunity"
+      },
+      "title": {
+        "type": "string",
+        "minLength": 3,
+        "description": "Arabic title of the opportunity"
+      },
+      "title_en": {
+        "type": "string",
+        "description": "Optional English title of the opportunity"
+      },
+      "organization": {
+        "type": "string",
+        "minLength": 2,
+        "description": "Provider, university, or platform name"
+      },
+      "type": {
+        "type": "string",
+        "enum": ["scholarship", "course", "internship"],
+        "description": "Category of the opportunity"
+      },
+      "study_levels": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["high_school", "bachelor", "master", "phd", "not_applicable"]
+        },
+        "description": "Target academic levels"
+      },
+      "country": {
+        "type": "string",
+        "minLength": 2,
+        "description": "Host country in Arabic or 'عن بعد'"
+      },
+      "funding_type": {
+        "type": "string",
+        "enum": ["fully_funded", "partially_funded", "free", "paid_internship", "unpaid"],
+        "description": "Funding status"
+      },
+      "deadline": {
+        "type": ["string", "null"],
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "description": "Deadline date in YYYY-MM-DD format or null if rolling/unspecified"
+      },
+      "yemeni_eligibility": {
+        "type": "string",
+        "enum": ["eligible", "warning", "excluded", "unspecified"],
+        "description": "Explicit Yemeni applicant eligibility status"
+      },
+      "summary": {
+        "type": "string",
+        "minLength": 10,
+        "description": "Short summary for card display"
+      },
+      "description": {
+        "type": "string",
+        "minLength": 20,
+        "description": "Full details for modal view"
+      },
+      "eligibility_criteria": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of eligibility requirements"
+      },
+      "benefits": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "List of benefits or coverage"
+      },
+      "source_url": {
+        "type": "string",
+        "pattern": "^https?://.+",
+        "description": "Official verified HTTPS source link"
+      },
+      "verified_at": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+        "description": "Verification date in YYYY-MM-DD format"
+      }
+    },
+    "additionalProperties": false
+  }
+}
